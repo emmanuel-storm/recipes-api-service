@@ -1,9 +1,18 @@
 import { Module } from '@nestjs/common';
-import { RecipeController } from './recipe.controller';
-import { RecipeService } from './recipe.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  controllers: [RecipeController],
-  providers: [RecipeService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'db', // Remplace localhost par db
+      port: 3306,
+      username: 'manu',
+      password: 'manu',
+      database: 'recipes_db',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+  ],
 })
 export class RecipeModule {}
