@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package recipes;
+
+message Recipe {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    repeated string ingredients = 4;
+    string instructions = 5;
+}
+
+message GetRecipeRequest {
+    string recipe_id = 1;
+}
+
+message GetRecipeResponse {
+    Recipe recipe = 1;
+}
+
+message CreateRecipeRequest {
+    Recipe recipe = 1;
+}
+
+message CreateRecipeResponse {
+    string message = 1;
+}
+
+message UpdateRecipeRequest {
+    string recipe_id = 1;
+    Recipe recipe = 2;
+}
+
+message UpdateRecipeResponse {
+    string message = 1;
+}
+
+message DeleteRecipeRequest {
+    string recipe_id = 1;
+}
+
+message DeleteRecipeResponse {
+    string message = 1;
+}
+
+service RecipeService {
+    rpc GetRecipe(GetRecipeRequest) returns (GetRecipeResponse);
+    rpc CreateRecipe(CreateRecipeRequest) returns (CreateRecipeResponse);
+    rpc UpdateRecipe(UpdateRecipeRequest) returns (UpdateRecipeResponse);
+    rpc DeleteRecipe(DeleteRecipeRequest) returns (DeleteRecipeResponse);
+}
